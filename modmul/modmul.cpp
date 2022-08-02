@@ -1,6 +1,7 @@
 #include "cstdint"
 #include <iostream>
 #include <bitset>
+#include <chrono>
 #include "stdlib.h"
 using namespace std;
 
@@ -44,16 +45,19 @@ int main() {
   freopen("out.csv","w",stdout);
   cout << "direct, "  << "domb, " << "r0" << "\n";
   for (int i = 0; i < 10000; i++) {
-    clock_t dirBegin = clock();
+    auto dirBegin = std::chrono::high_resolution_clock::now();
     DirMul(ra, rb);
-    float dirTime = float(clock() - dirBegin);
-    clock_t optBegin = clock();
+    auto dirEnd = std::chrono::high_resolution_clock::now();
+    double dirTime = std::chrono::duration<double, std::milli>(dirEnd-dirBegin).count();
+    auto optBegin = std::chrono::high_resolution_clock::now();
     OptMul(ra, rb);
-    float optTime = float(clock() - optBegin);
-    clock_t r0Begin = clock();
+    auto optEnd = std::chrono::high_resolution_clock::now();
+    double optTime = std::chrono::duration<double, std::milli>(dirEnd-dirBegin).count();
+    auto r0Begin = std::chrono::high_resolution_clock::now();
     Risc0Mul(ra, rb);
-    float r0Time = float(clock() - r0Begin);
-    cout << dirTime << ", " << optTime << ", " <<r0Time << "\n";
+    auto r0End = std::chrono::high_resolution_clock::now();
+    double r0Time = std::chrono::duration<double, std::milli>(dirEnd-dirBegin).count();
+    cout << dirTime << ", " << optTime << ", " << r0Time << "\n";
   }
   return 0;
 }
