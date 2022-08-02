@@ -1,6 +1,4 @@
 # modops
-Modular Exponentiation
-
 This repository is for faster modular arithmetic for hardware. 
 
 The multiplication algorithm is based on this paper: 
