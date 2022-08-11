@@ -1,3 +1,5 @@
 modexp/benchmarking/target
 modexp/testing/target
 .DS_Store
+rust_verifier/verifier/contract/target
+rust_verifier/verifier/contract/neardev

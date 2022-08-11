@@ -46,15 +46,21 @@ int main() {
   cout << "direct, "  << "domb, " << "r0" << "\n";
   for (int i = 0; i < 10000; i++) {
     auto dirBegin = std::chrono::high_resolution_clock::now();
-    DirMul(ra, rb);
+    for (int j = 0; j < 1000; j++) {
+      DirMul(ra, rb);
+    }
     auto dirEnd = std::chrono::high_resolution_clock::now();
     double dirTime = std::chrono::duration<double, std::milli>(dirEnd-dirBegin).count();
     auto optBegin = std::chrono::high_resolution_clock::now();
-    OptMul(ra, rb);
+    for (int j = 0; j < 1000; j++) {
+      OptMul(ra, rb);
+    }
     auto optEnd = std::chrono::high_resolution_clock::now();
     double optTime = std::chrono::duration<double, std::milli>(dirEnd-dirBegin).count();
     auto r0Begin = std::chrono::high_resolution_clock::now();
-    Risc0Mul(ra, rb);
+    for (int j = 0; j < 1000; j++) {
+      Risc0Mul(ra, rb);
+    }
     auto r0End = std::chrono::high_resolution_clock::now();
     double r0Time = std::chrono::duration<double, std::milli>(dirEnd-dirBegin).count();
     cout << dirTime << ", " << optTime << ", " << r0Time << "\n";
